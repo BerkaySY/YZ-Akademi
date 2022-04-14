@@ -49,7 +49,9 @@ while True:
         print("You have to input a minute between 00 and 59 !!!")
         sys.exit()
   
+print("************* Time *************")
 timeInWords(hour,minute)
+
 
 
 
