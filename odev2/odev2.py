@@ -23,9 +23,9 @@ def timeInWords(h,m):
         if m == 15:
             print(minuteList[m - 1] + " " + "to " + hourList[h])
         elif m == 1:
-            print(minuteList[m-1] + " " + "minute to " + hourList[h])
+            print(minuteList[m - 1] + " " + "minute to " + hourList[h])
         else:
-            print(minuteList[m-1] + " " + "minutes to " + hourList[h])
+            print(minuteList[m - 1] + " " + "minutes to " + hourList[h])
 
 
 while True:   
