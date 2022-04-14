@@ -10,7 +10,7 @@ def timeInWords(h,m):
         h %= 12
     
     if m == 0:
-        print(hourList[h - 1] + " o'clock")
+        print(hourList[h - 1] + " o' clock")
     elif m == 1:
         print(minuteList[m - 1] + " " + "minute past " + hourList[h - 1])
     elif m == 30 or m == 15:
