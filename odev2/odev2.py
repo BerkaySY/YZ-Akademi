@@ -22,12 +22,12 @@ def timeInWords(h,m):
         m = 60 - m
         if h == 12:
             h = 0
-            if m == 15:
-                print(minuteList[m - 1] + " " + "to " + hourList[h])
-            elif m == 1:
-                print(minuteList[m - 1] + " " + "minute to " + hourList[h])
-            else:
-                print(minuteList[m - 1] + " " + "minutes to " + hourList[h])
+        if m == 15:
+            print(minuteList[m - 1] + " " + "to " + hourList[h])
+        elif m == 1:
+            print(minuteList[m - 1] + " " + "minute to " + hourList[h])
+        else:
+            print(minuteList[m - 1] + " " + "minutes to " + hourList[h])
 
 
 while True:   
