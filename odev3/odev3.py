@@ -1,21 +1,21 @@
 sizeControl = False
 inpControl = False
 while sizeControl == False:
-    arraySize = int(input("Please input count of the lego's heights(You have to input between 1 and 100000) : "))
-    if (arraySize <= 10 ** 5) and (arraySize >= 1):
+    arraySize = int(input("Please enter count of the legos heights(You have to enter between 1 and 100000) : "))
+    if arraySize <= 10 ** 5 and arraySize >= 1:
         sizeControl = True
     else:
-        print("You have to input between 1 and 100000!!!")
+        print("You have to enter between 1 and 100000!!!")
 
 while inpControl == False:
-    heights = list(map(int,input("Please input heights of lego (You have to input between 1 and 100000 : ").split(' ')[:arraySize]))
+    heights = list(map(int,input("Please enter heights of legos (You have to enter between 1 and 100000 : ").split(' ')[:arraySize]))
     for i in heights:
         if i >= 1 and i <= 10 ** 5:
             inpControl = True
         else:
             inpControl = False
-            print("You have to input between 1 and 100000!!!")
-            break
+            print("You have to enter between 1 and 100000!!!")
+            
 
 def findMaxValue():
     max = heights[0]
@@ -24,9 +24,9 @@ def findMaxValue():
             max = i
     return max
 
-def checkArr():
-    result = all(element == heights[0] for element in heights)
-    if(result):
+def areHeightsSame():
+    result = all(height == heights[0] for height in heights)
+    if result:
         return True
     else:
         return False
@@ -37,14 +37,14 @@ def minEnergyCalc():
         newEnergy = ballEnergy
         for i in range(arraySize):
             if newEnergy >= heights[i]:
-                newEnergy = newEnergy + (newEnergy - heights[i])
+                newEnergy += (newEnergy - heights[i])
             elif newEnergy < heights[i]:
-                newEnergy = newEnergy - (heights[i] - newEnergy)
+                newEnergy -= (heights[i] - newEnergy)
 
             if newEnergy < 0:
                 break
             if i == (arraySize - 1) and newEnergy >= 0:
-                if checkArr() == True:
+                if areHeightsSame() == True:
                     if heights[0] <= arraySize:
                         minEnergy = ballEnergy
                     else:
@@ -53,7 +53,7 @@ def minEnergyCalc():
                     minEnergy = ballEnergy
             
         if minEnergy > ballEnergy:
-            print(minEnergy)
+            print("The Minimum Starting Ball Energy: " + str(minEnergy))
             break
         ballEnergy -= 1
 
