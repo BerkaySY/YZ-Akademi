@@ -2,7 +2,7 @@ sizeControl = False
 inpControl = False
 while sizeControl == False:
     arraySize = int(input("Please input count of the lego's heights(You have to input between 1 and 100000) : "))
-    if((arraySize <= 10 ** 5) and (arraySize >= 1)):
+    if (arraySize <= 10 ** 5) and (arraySize >= 1):
         sizeControl = True
     else:
         print("You have to input between 1 and 100000!!!")
