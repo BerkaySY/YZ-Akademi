@@ -1,14 +1,13 @@
 #include <iostream>
 #include <string>
-#include <locale.h>
-
+#include <vector>
 using namespace std;
 
 // text degiskeni ve kullanilacak buyuk kucuk harfler birden fazla fonksiyonda kullanilacagi icin global olarak tanimlandi
 string text;
-string alphabetUpperCase = "ABCÇDEFGÐHIÝJKLMNOÖPRSÞTUÜVYZ";
-string alphabetLowerCase = "abcçdefgðhýijklmnoöprsþtuüvyz";
-
+//Türkçe karakterlerin ASCII karsiliklari -> ç=135 Ç=128 ð=167 Ð=166 ý=141 Ý=152 Ö=153 ö=148 þ=159 Þ=158 Ü=154 ü=129
+vector<int> alphabetUpperCase { 65,66,67,128,68,69,70,71,166,72,73,152,74,75,76,77,78,79,153,80,82,83,158,84,85,154,86,89,90 };
+vector<int> alphabetLowerCase { 97,98,99,135,100,101,102,103,167,104,141,105,106,107,108,109,110,111,148,112,114,115,159,116,117,129,118,121,122 };
 // Sifrelenecek veya sifresi cozulecek metni kullanicidan girdi alan fonksiyon
 void getText() {
     cout << "Please Enter Your Text :";
@@ -21,78 +20,29 @@ void encryption() {
     getText();
     // Girilen Metnin uzunluguna kadar devam eden for döngüsü
     for (int i = 0; i < text.length(); i++) {
-        // 23 tane karakter oldugu icin 23'e kadar devam eden for döngüsü
+        // 29 tane karakter oldugu icin 29'a kadar devam eden for döngüsü
         for (int j = 0; j < 29; j++) {
-            if (text[i] == char(128)) { // Ç karakteri için
-                text[i] = 'A';
-                break;
-            }
-            else if (text[i] == char(129)) { // ü karakteri için
-                text[i] = 'z';
-                break;
-            }
-            else if (text[i] == char(135)) { // ç karakteri için
-                text[i] = 'f';
-                break;
-            }
-            else if (text[i] == char(141)) { // ý karakteri için
-                text[i] = 'k';
-                break;
-            }
-            else if (text[i] == char(148)) { // ö karakteri için
-                text[i] = 's';
-                break;
-            }
-            else if(text[i] == char(152)) { // Ý karakteri için
-                text[i] = 'L';
-                break;
-            }
-            else if (text[i] == char(153)) { // Ö karakteri için
-                text[i] = 'S';
-                break;
-            }
-            else if (text[i] == char(154)) { // Ü karakter için
-                text[i] = 'Z';
-                break;
-            }
-            else if (text[i] == char(158)) { // Þ karakteri için
-                text[i] = 'Ü';
-                break;
-            }
-            else if (text[i] == char(159)) { // þ karakteri için
-                text[i] = 'ü';
-                break;
-            }
-            else if (text[i] == char(166)) { // Ð karakteri için
-                text[i] = 'Ý';
-                break;
-            }
-            else if (text[i] == char(167)) { // ð karakteri için
-                text[i] = 'i';
-                break;
-            }
-            //Eger girilen metnin i indeksindeki eleman kucukharf dizisinin j indeksindeki elemana esitse j yi 3 arttirip 23'e göre modunu al ve metnin i indeksindeki elemani kucukharf dizisinin j indeksindeki elemanla degistir
-            else if (text[i] == alphabetLowerCase[j]) {
+            //Eger girilen metnin i indeksindeki eleman kucukharf dizisinin j indeksindeki elemana esitse j yi 3 arttirip 29'a göre modunu al ve metnin i indeksindeki elemani kucukharf dizisinin j indeksindeki elemanla degistir
+            if (text[i] == char(alphabetLowerCase[j])) {
                 j += 3;
                 j %= 29;
-                text[i] = alphabetLowerCase[j];
+                text[i] = char(alphabetLowerCase[j]);
                 break;
             }
-            //Eger girilen metnin i indeksindeki eleman buyukharf dizisinin j indeksindeki elemana esitse j yi 3 arttirip 23'e göre modunu al ve metnin i indeksindeki elemani buyukharf dizisinin j indeksindeki elemanla degistir
-            else if (text[i] == alphabetUpperCase[j]) {
+            //Eger girilen metnin i indeksindeki eleman buyukharf dizisinin j indeksindeki elemana esitse j yi 3 arttirip 29'a göre modunu al ve metnin i indeksindeki elemani buyukharf dizisinin j indeksindeki elemanla degistir
+            else if (text[i] == char(alphabetUpperCase[j])) {
                 j += 3;
                 j %= 29;
-                text[i] = alphabetUpperCase[j];
+                text[i] = char(alphabetUpperCase[j]);
                 break;
             }
             else {
                 continue;
             }
-                
         }
     }
     // Sifrelenmis Mesaji Yazdirma
-    cout << "Encrypted Text: " << text << endl;
+    cout << "Encrypted Text :" << text << endl;
 }
 
 // Sifre Cozme Fonksiyonu
@@ -100,74 +50,26 @@ void decryption() {
     getText();
     // Girilen Metnin uzunluguna kadar devam eden for döngüsü
     for (int i = 0; i < text.length(); i++) {
-        // 23 tane karakter oldugu icin 23'e kadar devam eden for döngüsü
+        // 29 tane karakter oldugu icin 29'e kadar devam eden for döngüsü
         for (int j = 0; j < 29; j++) {
-            if (text[i] == char(128)) { // Ç karakteri için
-                text[i] = 'F';
-                break;
-            }
-            else if (text[i] == char(129)) { // ü karakteri için
-                text[i] = 'þ';
-                break;
-            }
-            else if (text[i] == char(135)) { // ç karakteri için
-                text[i] = 'a';
-                break;
-            }
-            else if (text[i] == char(141)) { // ý karakteri için
-                text[i] = 'g';
-                break;
-            }
-            else if (text[i] == char(148)) { // ö karakteri için
-                text[i] = 'm';
-                break;
-            }
-            else if (text[i] == char(152)) { // Ý karakteri için
-                text[i] = 'Ð';
-                break;
-            }
-            else if (text[i] == char(153)) { // Ö karakteri için
-                text[i] = 'M';
-                break;
-            }
-            else if (text[i] == char(154)) { // Ü karakter için
-                text[i] = 'Þ';
-                break;
-            }
-            else if (text[i] == char(158)) { // Þ karakteri için
-                text[i] = 'Ü';
-                break;
-            }
-            else if (text[i] == char(159)) { // þ karakteri için
-                text[i] = 'ü';
-                break;
-            }
-            else if (text[i] == char(166)) { // Ð karakteri için
-                text[i] = 'E';
-                break;
-            }
-            else if (text[i] == char(167)) { // ð karakteri için
-                text[i] = 'e';
-                break;
-            }
-            //Eger girilen metnin i indeksindeki eleman kucukharf dizisinin j indeksindeki elemana esitse j yi 3 azaltip 23'e göre modunu al ve metnin i indeksindeki elemani kucukharf dizisinin j indeksindeki elemanla degistir.
-            else if (text[i] == alphabetLowerCase[j]) {
+            //Eger girilen metnin i indeksindeki eleman kucukharf dizisinin j indeksindeki elemana esitse j yi 3 azaltip 29'a göre modunu al ve metnin i indeksindeki elemani kucukharf dizisinin j indeksindeki elemanla degistir.
+            if (text[i] == char(alphabetLowerCase[j])) {
                 j -= 3;
-                //Eger j'den 3 cikartildiginda 0'dan kücük oluyorsa j'ye 23 eklenir ve 23'e göre modu alinir.
+                //Eger j'den 3 cikartildiginda 0'dan kücük oluyorsa j'ye 29 eklenir ve 29'e göre modu alinir.
                 if (j < 0)
                     j += 29;
                 j %= 29;
-                text[i] = alphabetLowerCase[j];
+                text[i] = char(alphabetLowerCase[j]);
                 break;
             }
-            //Eger girilen metnin i indeksindeki eleman buyukharf dizisinin j indeksindeki elemana esitse j yi 3 azaltip 23'e göre modunu al ve metnin i indeksindeki elemani buyukharf dizisinin j indeksindeki elemanla degistir
-            else if (text[i] == alphabetUpperCase[j]) {
+            //Eger girilen metnin i indeksindeki eleman buyukharf dizisinin j indeksindeki elemana esitse j yi 3 azaltip 29'a göre modunu al ve metnin i indeksindeki elemani buyukharf dizisinin j indeksindeki elemanla degistir
+            else if (text[i] == char(alphabetUpperCase[j])) {
                 j -= 3;
-                //Eger j'den 3 cikartildiginda 0'dan kücük oluyorsa j'ye 23 eklenir ve 23'e göre modu alinir.
+                //Eger j'den 3 cikartildiginda 0'dan kücük oluyorsa j'ye 29 eklenir ve 29'a göre modu alinir.
                 if (j < 0)
                     j += 29;
                 j %= 29;
-                text[i] = alphabetUpperCase[j];
+                text[i] = char(alphabetUpperCase[j]);
                 break;
             }
             else 
@@ -181,14 +83,14 @@ void decryption() {
 
 int main()
 {
-    setlocale(LC_ALL, "Turkish");
+    
     char restart = 'Y';
     char choice;
     // restart degiskeni 'y' veya 'Y' olduðu sürece devam etmesi icin while döngüsü
     while (restart == 'Y' || restart == 'y')
     {
         bool choiceControl = false;
-        cout << "Please Select Operation!\n" << "1.Encryption\n" << "2.Decryption\n" << "Enter Number Of Your Choice : ";
+        cout << "Please Select Operation!\n" << "1.Encryption\n" << "2.Decryption\n" << "Enter Number Of Your Choice :";
         // Kullanicidan alinan islem numarasinin dogru girilmesi icin while döngüsü icinde switch-case yapisi kullanildi yanlis girildiginde hata mesaji verildi ve tekrar islem numarasi girilmesi istendi.Dogru girildiginde while döngüsünden cikip programa devam edildi.
         while (choiceControl == false) {
             cin >> choice;
@@ -204,7 +106,7 @@ int main()
                 break;
             default:
                 cout << "Please Enter Operation Number Correctly!(You Can Only Use 1 And 2)\n";
-                cout << "Enter Number Of Your Choice : ";
+                cout << "Enter Number Of Your Choice :";
                 break;
             }
         }
