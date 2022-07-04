@@ -3,7 +3,6 @@
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
-
 // Sistem Saatini elde etmek icin kullanilan kutuphaneler
 #include <chrono>
 #include <ctime>
@@ -59,8 +58,6 @@ int main() {
 		int key = waitKey(15);
 		if (key == 's')
 			break;
-		;
-		
 	}
 	// videocapture ve videowriteri serbest býrak ve acik olan bütün pencereleri kapat
 	vidCapture.release();
