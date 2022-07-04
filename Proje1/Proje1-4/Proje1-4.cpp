@@ -6,7 +6,7 @@
 // Sistem Saatini elde etmek icin kullanilan kutuphaneler
 #include <chrono>
 #include <ctime>
-// 'ctime': This function or variable may be unsafe. Hatasini Devre Disi Birakmak Ýcin Yazildi
+// 'ctime': This function or variable may be unsafe. Hatasini Devre Disi Birakmak Icin Yazildi
 #pragma warning(disable : 4996)
 
 using namespace cv;
@@ -33,7 +33,7 @@ int main() {
 	int frame_height = vidCapture.get(CAP_PROP_FRAME_HEIGHT);
 	int fps = vidCapture.get(CAP_PROP_FPS);
 	
-	// Videonun VideoWriterla kaydetme islemi
+	// Videonun VideoWriterla kaydedilme ayarlari
 	VideoWriter video("kayit.mp4",VideoWriter::fourcc('M', 'P', '4', 'V'), fps, Size(frame_width, frame_height));
 
 	// VideoCapture sonucunda video acilmissa yapilacak islemler
