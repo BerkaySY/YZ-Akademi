@@ -6,13 +6,12 @@
 // Sistem Saatini elde etmek icin kullanilan kutuphaneler
 #include <chrono>
 #include <ctime>
-// 'ctime': This function or variable may be unsafe. Hatasini Devre Disi Birakmak Icin Yazildi
-#pragma warning(disable : 4996)
+#pragma warning(disable : 4996) // 'ctime': This function or variable may be unsafe. Hatasini Devre Disi Birakmak Icin Yazildi.
 
 using namespace cv;
 using namespace std;
 
-// Sistemden tarih ve saat degerlerini alan ve string olarak döndüren fonksiyon
+// Sistemden tarih ve saat degerlerini alan ve string olarak dÃ¶ndÃ¼ren fonksiyon
 string getDateTimeNow() {
 	auto time = chrono::system_clock::now();
 	time_t now = chrono::system_clock::to_time_t(time);
@@ -24,7 +23,7 @@ string getDateTimeNow() {
 int main() {
 	// Videoyu acmak icin videocapture kullanarak bulundugu konumu belirttim.
 	VideoCapture vidCapture("testvideos/video3.mp4");
-	// videocapture sonucunda video acilmamissa hata döndürdüm.
+	// videocapture sonucunda video acilmamissa hata dÃ¶ndÃ¼rdÃ¼m.
 	if (!vidCapture.isOpened())
 		cout << "Error!! Couldn't open video!\n";
 	
@@ -41,7 +40,7 @@ int main() {
 		Mat frame;
 		// Videonun framelerini yakalamak icin
 		vidCapture >> frame;
-		// Frame okuma islemi basariliysa videonun sol üst kösesine tarih saat bilgisi yazildi ve video gösterildi.
+		// Frame okuma islemi basariliysa videonun sol Ã¼st kÃ¶sesine tarih saat bilgisi yazildi ve video gÃ¶sterildi.
 		if (!frame.empty()) {
 			putText(frame, getDateTimeNow(), Point(0, 25), FONT_HERSHEY_SIMPLEX, 1, Scalar(0,0,255), 2, LINE_8);
 			video.write(frame);
@@ -59,7 +58,7 @@ int main() {
 		if (key == 's')
 			break;
 	}
-	// videocapture ve videowriteri serbest býrak ve acik olan bütün pencereleri kapat
+	// videocapture ve videowriteri serbest bÄ±rak ve acik olan bÃ¼tÃ¼n pencereleri kapat
 	vidCapture.release();
 	video.release();
 	destroyAllWindows();
